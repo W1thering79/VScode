@@ -6,6 +6,7 @@ Module Purpose:
 */
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -17,6 +18,9 @@ void SwapIntPtr(int** a,int** b);
 
 int main()
 {
-
+    ifstream inputfile ("arrayData.txt");
     
+    int dataArray[5];
+    int pointerArray[5];
+
 }
