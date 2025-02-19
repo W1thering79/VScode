@@ -8,6 +8,7 @@
         "xstring": "cpp",
         "vector": "cpp",
         "iterator": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "istream": "cpp"
     }
 }
