@@ -1,5 +1,5 @@
 /*
-Program Name: Array Sort Using Pointers
+Program Name: Assign Roll Bones Game
 Date: 2/25/2025
 Author: Samuel Song
 Module Purpose: 
@@ -28,12 +28,18 @@ int main() {
 
   do {
     betUns=askForBetDonePlayingFunc(stakeUns);
+    if (betUns>0)
+    {
+      rollDemBonesFunc(rollCountUns);
+    }
     //$ based on betUns determine wether or not to call rollDemBonesFunc(rollCountUns)
     //$ and then call evaluateRollFunc(diceRollResultsUns, rollCountUns, stakeUns, betUns);
   } while (betUns!=0 && stakeUns!=0); //$ execute loop as long as betUns != 0 and stakeUns != 0;
 
-  
-  //$ Check if betUns is 0 
+  if (betUns=0)
+  {
+
+  }
   //$   then display player ends game
   //$   else display player out of money
 
@@ -59,7 +65,7 @@ unsigned askForInititalStakeAmountFunc()
 {
   unsigned stakeUns;
   do {
-    cout<<"What is your stake amount?";
+    cout<<"What is your stake amount?"<<endl;
     cin>>stakeUns;
 
     if (stakeUns>0)
@@ -90,7 +96,22 @@ Outputs:           By function name an unsigned integer that's the bet amount
 unsigned askForBetDonePlayingFunc(unsigned& stakeUns) 
 {
 
-  //$ design necssary code
+  unsigned betamount;
+  cout<<"Current Stake Amount:"<<stakeUns<<endl;
+  cout<<"How much will you bet?";
+  cin>>betamount;
+
+  if (betamount<0)
+  {
+    cout<<"You must enter a 0 or positive amount of money to bet with. Try again!";
+    cin>>betamount;
+  }
+
+  if (betamount>stakeUns)
+  {
+    cout<<"You cannot bet higher than your stake amount:";
+    cin>>betamount;
+  }
 
   //Design a validation loop
 
