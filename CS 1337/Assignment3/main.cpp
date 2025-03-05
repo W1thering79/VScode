@@ -2,7 +2,7 @@
 Program Name: Assign Roll Bones Game
 Date: 2/25/2025
 Author: Samuel Song
-Module Purpose: 
+Module Purpose: Get users
 */
 
 #include <iostream>
@@ -15,38 +15,43 @@ using namespace std;
 unsigned askForInititalStakeAmountFunc();
 unsigned askForBetDonePlayingFunc(unsigned& stakeUns);
 unsigned rollDemBonesFunc(unsigned& rollCountUns);
-void     evaluateRollFunc(unsigned diceRollResultsUns, unsigned& rollCountUns, unsigned& stakeUns, unsigned betUns);
-bool     pointRollDemBonesFunc(unsigned pointUns, unsigned& rollCountUns);
+void  evaluateRollFunc(unsigned diceRollResultsUns, unsigned& rollCountUns, unsigned& stakeUns, unsigned betUns);
+bool  pointRollDemBonesFunc(unsigned pointUns, unsigned& rollCountUns);
 
-int main() {
-  unsigned
-    betUns,
-    rollCountUns = 0,
-    diceRollResultsUns;
-
-    unsigned stakeUns=askForInititalStakeAmountFunc();
-
-  do {
-    betUns=askForBetDonePlayingFunc(stakeUns);
-    if (betUns>0)
-    {
-      rollDemBonesFunc(rollCountUns);
-    }
-    //$ based on betUns determine wether or not to call rollDemBonesFunc(rollCountUns)
-    //$ and then call evaluateRollFunc(diceRollResultsUns, rollCountUns, stakeUns, betUns);
-  } while (betUns!=0 && stakeUns!=0); //$ execute loop as long as betUns != 0 and stakeUns != 0;
-
-  if (betUns=0)
+int main() 
+{
+  unsigned betUns, rollCountUns=0, diceRollResultsUns;
+  
+  
+  unsigned stakeUns=askForInititalStakeAmountFunc();
+  do 
   {
+    betUns = askForBetDonePlayingFunc(stakeUns);
+        if (betUns==0) 
+        {
+          break;
+        }
+        diceRollResultsUns=rollDemBonesFunc(rollCountUns);
+        evaluateRollFunc(diceRollResultsUns, rollCountUns, stakeUns, betUns);
+        cout<<"Current stake:"<<stakeUns<<"\n\n";
+  } while (betUns!=0 && stakeUns!=0);
 
+
+  if (betUns==0)
+  {
+    cout<<"Game over.\n";
+    exit(EXIT_SUCCESS);
   }
-  //$   then display player ends game
-  //$   else display player out of money
+  else
+  {
+    cout<<"You ran out of money.\t";
+  }
 
-  //$ display a Roll Count message;
-  //$ display a final stake amount messaqge
 
-  cout << "Press enter key once or twice to end ... ";cin.ignore(); cin.get();
+  cout<<"You rolled "<<rollCountUns<<" times.\t";
+  cout<<"You're final stake amount was "<<stakeUns;
+  cout << "Press enter key once or twice to end... ";cin.ignore(); cin.get();
+
 
   exit(EXIT_SUCCESS);
 }
@@ -63,21 +68,25 @@ Outputs:           By function name an unsigned integer that's the stake amount
 
 unsigned askForInititalStakeAmountFunc() 
 {
-  unsigned stakeUns;
-  do {
+
+  int stakeUns;
+
+  do 
+  {
     cout<<"What is your stake amount?"<<endl;
     cin>>stakeUns;
 
-    if (stakeUns>0)
+    if (stakeUns>=0)
     {
-      return stakeUns;
+      break;
     }
-    else
+    else while (stakeUns<0)
     {
       cout<<"You must enter a 0 or positive amount of money to bet with. Try again!";
       cin>>stakeUns;
     }
-  } while (true); 
+  } 
+  while (true); 
 
   return stakeUns;
 
@@ -96,41 +105,29 @@ Outputs:           By function name an unsigned integer that's the bet amount
 unsigned askForBetDonePlayingFunc(unsigned& stakeUns) 
 {
 
-  unsigned betamount;
+  unsigned bet=0;
   cout<<"Current Stake Amount:"<<stakeUns<<endl;
-  cout<<"How much will you bet?";
-  cin>>betamount;
-
-  if (betamount<0)
+  cout<<"How much will you bet?\n";
+  cin>>bet;
+  
+  while (bet>stakeUns)
   {
-    cout<<"You must enter a 0 or positive amount of money to bet with. Try again!";
-    cin>>betamount;
+    cout << "Bet amount cannot be more than your current stake. Please try again.\n";
+    cin>>bet;
   }
 
-  if (betamount>stakeUns)
+  while (bet<0)
   {
-    cout<<"You cannot bet higher than your stake amount:";
-    cin>>betamount;
+    cout<<"Bet amount must be greater than or equal to 0. Try again.\n";
+    cin>>bet;
   }
 
-  //Design a validation loop
+  if (bet==0)
+  {
+    return(bet);
+  }
 
-     //$ display current stake amount
-     //$ ask for a bet
-
-     //$ check if input  amount more than stake amount
-         //$ display error message
-         //$ continue the loop
-
-     //$ check if input bet amount is less than 0
-         //$ display error message
-         //$ continue the loop
-     
-     //$ set valid bet amount
-         // leave the loop
-
-   //$ return the valid inputted bet
-  return(0);
+  return(bet);
 }
 
 /*
@@ -144,19 +141,23 @@ Inputs/Outpuut:   &rollCountUns - Reference of total rolls count in game
 Outputs:          By function name an unsigned integer that's the sum of the two rolled dice
 */
 
-unsigned rollDemBonesFunc(unsigned& rollCountUns) {
+unsigned rollDemBonesFunc(unsigned& rollCountUns) 
+{
+  cout<<"Press enter key once or twice to throw the dice... ";cin.ignore();cin.get();
 
-  //$ display Press enter key once or twice to throw the dice
-  //$ see assigment to use ignore() and get() to hold the screen
+  rollCountUns++;
 
-  //$ increment the roll count
-  //$seed the random number generator
+  srand(clock());
+
+  int max=6;
+  int min=1;
+
+  unsigned die1=(rand()%(max-min+1)+min);
+  unsigned die2=(rand()%(max-min+1)+min);
+  unsigned sum=die1+die2;
   
-
-  //$execute the dice roll as two separet rolls
-
-  //$ return the dice sum
-  return(0);
+  cout<<"You rolled a "<<die1<<" and a "<<die2<<" for a total of "<<sum<<".\n";
+  return sum;
 }
 
 /*
@@ -172,10 +173,39 @@ Input/Output:     &rollCountUns      - Reference to tally of total rolls
                   &stakeUns          - Reference to the total at stake
 */
 
-void evaluateRollFunc(unsigned diceRollResultsUns, unsigned& rollCountUns, unsigned& stakeUns, unsigned betUns) {
-//$ Code up this function as per game rules in assignment
+void evaluateRollFunc(unsigned diceRollResultsUns, unsigned& rollCountUns, unsigned& stakeUns, unsigned betUns) 
+{
+    if (diceRollResultsUns==2||diceRollResultsUns==3||diceRollResultsUns==12) 
+    {
+        cout<<"You Lose!\n";
+        stakeUns-=betUns;
+    } 
+    else if (diceRollResultsUns==7||diceRollResultsUns==11) 
+    {
+        cout<<"You win!\n";
+        stakeUns+=(betUns * 2);
+    } 
+    else 
+    {
+        unsigned point = diceRollResultsUns;
+        cout<<"The point is: "<<point<<endl;
+        cout<<"Throw em again and hope that luck is on your side!\n"<<endl;
 
+        bool win=pointRollDemBonesFunc(point, rollCountUns);
+
+        if (win) 
+        {
+            cout<<"You rolled the point! You win!\n";
+            stakeUns+=(betUns * 2);
+        } 
+        else
+        {
+            cout<<"You rolled a 7. You lose!\n";
+            stakeUns-=betUns;
+        }
+    }
 }
+
 
 /*
 Name:             pointRollDemBonesFunc
@@ -188,14 +218,25 @@ Inputs/Outputs    &rollCountUns - Reference to total roll count
 Outputs:          After point rolls produces a return for a win (true) or a loss (false)
 */
 
-bool pointRollDemBonesFunc(unsigned pointUns, unsigned& rollCountUns) {
-  
-  unsigned pointRollUns;
+bool pointRollDemBonesFunc(unsigned pointUns, unsigned& rollCountUns) 
+{
+  unsigned diceSum;
 
-  //Executes until point  value  or 7 is rolled
-
-
-  return(false);
+  while (true) 
+  {
+      diceSum = rollDemBonesFunc(rollCountUns);
+      if (diceSum == pointUns) 
+      {
+          return true;
+      }
+      else if (diceSum == 7) 
+      {
+          return false;
+      }
+      else 
+      {
+          cout<<"The point is "<<pointUns<<"\n";
+          cout<<"Throw em again and hope that luck is on your side!"<<"\n";
+      }
+  }
 }
-
-
