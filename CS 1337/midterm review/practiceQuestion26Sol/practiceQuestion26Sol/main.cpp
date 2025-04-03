@@ -26,7 +26,7 @@ Assume that all necessary libraries have already been included.
 using namespace std;
 
 void AutoMashUp() {
-  ifstream autos1980sFile ("1080s.txt");
+  ifstream autos1980sFile ("1980s.txt");
   ifstream autos2010sFile ("2010s.txt");
   ofstream autosMashFile  ("autosMash.txt");
 
@@ -37,9 +37,10 @@ void AutoMashUp() {
   }
 
   string auto1980s, auto2010s;
-  while (getline(autos1980sFile, auto1980s) && getline(autos2010sFile, auto2010s)) {
+  while (getline(autos1980sFile, auto1980s) && getline(autos2010sFile, auto2010s))
+  {
     string newAutoName = auto1980s.substr(0, 5) + auto2010s.substr(0, 5) + "auto";
-    dinoMashFile << newAutoName << endl;
+    autosMashFile << newAutoName << endl;
   }
 
   autos1980sFile.close();
