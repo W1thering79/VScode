@@ -2,6 +2,69 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Activity6",
+            "request": "launch",
+            "mainClass": "Activity6",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Assignment2",
+            "request": "launch",
+            "mainClass": "Assignment2",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity5",
+            "request": "launch",
+            "mainClass": "Activity5",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity4",
+            "request": "launch",
+            "mainClass": "Activity4",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Conditional",
+            "request": "launch",
+            "mainClass": "Conditional",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "UsToMetricSystem",
+            "request": "launch",
+            "mainClass": "UsToMetricSystem",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Average",
+            "request": "launch",
+            "mainClass": "Average",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Average3Values",
+            "request": "launch",
+            "mainClass": "Average3Values",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
             "name": "C/C++: cl.exe build and debug active file",
             "type": "cppvsdbg",
             "request": "launch",

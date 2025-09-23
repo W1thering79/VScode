@@ -8,6 +8,9 @@
         "xstring": "cpp",
         "vector": "cpp",
         "iterator": "cpp",
-        "xmemory": "cpp"
-    }
+        "xmemory": "cpp",
+        "cstdlib": "cpp",
+        "iosfwd": "cpp"
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }
