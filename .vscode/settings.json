@@ -10,7 +10,8 @@
         "iterator": "cpp",
         "xmemory": "cpp",
         "cstdlib": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "istream": "cpp"
     },
     "java.debug.settings.onBuildFailureProceed": true
 }
