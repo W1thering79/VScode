@@ -52,17 +52,18 @@ public class Assignment2
 
         System.out.print("Column:");
         int column=input.nextInt();
+        
+        if (row<0||column<0||row>2||column>2)
+        {
+            System.out.println("Invalid choice, outside of game board bounds");
+            Player1(gameboard);
+        }
+
 
         boolean spaceAvailable=CheckSpace(gameboard,row,column);
 
         if (!spaceAvailable)
         {
-            Player1(gameboard);
-        }
-        
-        if (row<0||column<0||row>2||column>2)
-        {
-            System.out.println("Invalid choice, outside of game board bounds");
             Player1(gameboard);
         }
         else
@@ -81,22 +82,24 @@ public class Assignment2
 
         System.out.print("Column:");
         int column=input.nextInt();
-        boolean spaceAvailable = CheckSpace(gameboard,row,column);
 
-        if (!spaceAvailable)
-        {
-            Player2(gameboard);
-            return;
-        }
 
         if (row<0||column<0||row>2||column>2)
         {
             System.out.println("Invalid choice, outside of game board bounds");
             Player2(gameboard);
         }
-        else
+
+        boolean spaceAvailable = CheckSpace(gameboard,row,column);
+
+                if (!spaceAvailable)
+        {
+            Player2(gameboard);
+        }
+                else
         {
             gameboard[row][column]=2;
+            PrintGameboard(gameboard);
         }
 
         boolean win=CheckWin(gameboard);
