@@ -4,18 +4,19 @@ public class Assignment2
 {
     public static void main(String[] args) 
     {
-
         Scanner input=new Scanner(System.in);
 
         int [][] gameboard=new int [3][3];
 
-        PrintGameboard(gameboard);
-        
-        Game();
+        PrintGameboard(gameboard);      
+        Game(gameboard);
+
         input.close();
 
 
     }    
+
+
 
     static void PrintGameboard(int gameboard[][])
     {
@@ -28,20 +29,14 @@ public class Assignment2
             }
             System.out.println();
         }
+        System.out.println("\n");
     }
-    static void Game()
+    static void Game(int[][] gameboard)
     {
-        Scanner input=new Scanner(System.in);
-        int [][] gameboard=new int [3][3];
-
         Player1(gameboard);
-        PrintGameboard(gameboard);
-
-        Player2(gameboard);
-        PrintGameboard(gameboard);
-
-
     }
+
+
 
     static void Player1(int gameboard[][])
     {
@@ -52,13 +47,14 @@ public class Assignment2
 
         System.out.print("Column:");
         int column=input.nextInt();
+
+        System.out.println("\n");
         
         if (row<0||column<0||row>2||column>2)
         {
             System.out.println("Invalid choice, outside of game board bounds");
             Player1(gameboard);
         }
-
 
         boolean spaceAvailable=CheckSpace(gameboard,row,column);
 
@@ -71,7 +67,22 @@ public class Assignment2
             gameboard[row][column]=1;
         }
 
+        boolean win=CheckWin(gameboard);
+        boolean draw=CheckDraw(gameboard);
+
+        if (!draw && !win)
+        {
+            PrintGameboard(gameboard);
+            Player2(gameboard);
+        }
+        else
+        {
+            System.exit(0);
+        }
+
     }
+
+
 
     static void Player2(int gameboard[][])
     {
@@ -83,6 +94,7 @@ public class Assignment2
         System.out.print("Column:");
         int column=input.nextInt();
 
+        System.out.println("\n");
 
         if (row<0||column<0||row>2||column>2)
         {
@@ -92,14 +104,13 @@ public class Assignment2
 
         boolean spaceAvailable = CheckSpace(gameboard,row,column);
 
-                if (!spaceAvailable)
+        if (!spaceAvailable)
         {
             Player2(gameboard);
         }
-                else
+        else
         {
             gameboard[row][column]=2;
-            PrintGameboard(gameboard);
         }
 
         boolean win=CheckWin(gameboard);
@@ -107,20 +118,26 @@ public class Assignment2
 
         if (!draw && !win)
         {
-            Game();
+            PrintGameboard(gameboard);
+            Player1(gameboard);
         }
 
     }
+
+
 
     static boolean CheckSpace(int gameboard[][],int row,int column)
     {
         if (gameboard[row][column]!=0) 
         {
+            PrintGameboard(gameboard);
             System.out.println("The space you selected is already occupied. Try again.");
             return false;
         }
         return true;
     }
+
+
 
     static boolean CheckWin(int gameboard[][])
     {
@@ -130,12 +147,14 @@ public class Assignment2
             if (gameboard[rows][0]==gameboard[rows][1] && gameboard[rows][1]==gameboard[rows][2] && gameboard[rows][0]!=0) 
             {
                 System.out.println("Player "+gameboard[rows][0]+" wins!");
-                return true;
+                PrintGameboard(gameboard);
+                System.exit(0);
             }
             if (gameboard[0][rows]==gameboard[1][rows] && gameboard[1][rows]==gameboard[2][rows] && gameboard[0][rows]!=0) 
             {
                 System.out.println("Player "+gameboard[0][rows]+" wins!");
-                return true;
+                PrintGameboard(gameboard);
+                System.exit(0);
             }
         }
 
@@ -143,15 +162,19 @@ public class Assignment2
         if (gameboard[0][0]==gameboard[1][1] && gameboard[1][1]==gameboard[2][2] && gameboard[0][0]!=0) 
         {
             System.out.println("Player "+gameboard[0][0]+" wins!");
-            return true;
+            PrintGameboard(gameboard);
+            System.exit(0);
         }
         if (gameboard[0][2]==gameboard[1][1] && gameboard[1][1]==gameboard[2][0] && gameboard[0][2]!=0)
         {
             System.out.println("Player "+gameboard[0][2]+" wins!");
-            return true;
+            PrintGameboard(gameboard);
+            System.exit(0);
         }
         return false;
     }
+
+
 
     static boolean CheckDraw(int gameboard[][])
     {
@@ -161,20 +184,18 @@ public class Assignment2
         {
             for (int col=0;col<3;col++) 
             {
-                if (gameboard[row][col] == 0) 
+                if (gameboard[row][col]==0) 
                 {
-                    tie = false;
-                    Game();
+                    tie=false;
                 }
             }
         }
         if (tie) 
         {
+            PrintGameboard(gameboard);
             System.out.println("The game is a tie!");
             System.exit(0);
         }   
         return tie;
     }
-    
 }
-
