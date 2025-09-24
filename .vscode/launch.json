@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Activity7",
+            "request": "launch",
+            "mainClass": "Activity7",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
             "name": "Activity6",
             "request": "launch",
             "mainClass": "Activity6",

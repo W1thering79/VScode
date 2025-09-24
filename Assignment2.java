@@ -59,7 +59,7 @@ public class Assignment2
         {
             Player1(gameboard);
         }
-
+        
         if (row<0||column<0||row>2||column>2)
         {
             System.out.println("Invalid choice, outside of game board bounds");
