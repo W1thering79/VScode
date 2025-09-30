@@ -6,10 +6,10 @@ public class Assignment2
     {
         Scanner input=new Scanner(System.in);
 
-        int [][] gameboard=new int [3][3];
+        int [][] gameboard=new int [3][3];  //initialized matrix as a 3x3 array
 
-        PrintGameboard(gameboard);      
-        Game(gameboard);
+        PrintGameboard(gameboard);  //calls the PrintGameboard method to display the empty game board
+        Game(gameboard);    //calls the Game method to start the game
 
         input.close();
 
@@ -18,19 +18,23 @@ public class Assignment2
 
 
 
-    static void PrintGameboard(int gameboard[][])
+    static void PrintGameboard(int gameboard[][])   //uses gameboard array as parameter
     {
         System.out.println("Game Board:");
+
+        //for loop to print each row and column of the game board
         for (int row=0;row<3;row++)
         {
             for (int column=0;column<3;column++)
             {
-                System.out.print(gameboard[row][column]+" ");
+                System.out.print(gameboard[row][column]+" "); 
             }
             System.out.println();
         }
         System.out.println("\n");
     }
+
+    //starts the game with Player 1, gameboard as parameter to keep track of moves
     static void Game(int[][] gameboard)
     {
         Player1(gameboard);
@@ -50,14 +54,18 @@ public class Assignment2
 
         System.out.println("\n");
         
+        //checks if the input is within the bounds of the game board
         if (row<0||column<0||row>2||column>2)
         {
             System.out.println("Invalid choice, outside of game board bounds");
             Player1(gameboard);
         }
 
+        //boolean check if the selected space is available
         boolean spaceAvailable=CheckSpace(gameboard,row,column);
 
+        /*if else statement for if the space is available and prompts user to either choose again 
+        (calls player1 method again) or place their marker*/
         if (!spaceAvailable)
         {
             Player1(gameboard);
@@ -67,15 +75,17 @@ public class Assignment2
             gameboard[row][column]=1;
         }
 
+        //boolean checks for win or draw
         boolean win=CheckWin(gameboard);
         boolean draw=CheckDraw(gameboard);
 
+        //if no win or draw, prints game board and calls Player2 method for next turn
         if (!draw && !win)
         {
             PrintGameboard(gameboard);
             Player2(gameboard);
         }
-        else
+        else //ends the game if there is a win or draw
         {
             System.exit(0);
         }
@@ -96,14 +106,18 @@ public class Assignment2
 
         System.out.println("\n");
 
+        //checks if the input is within the bounds of the game board
         if (row<0||column<0||row>2||column>2)
         {
             System.out.println("Invalid choice, outside of game board bounds");
             Player2(gameboard);
         }
 
+        //boolean check if the selected space is available
         boolean spaceAvailable = CheckSpace(gameboard,row,column);
 
+        /*if else statement for if the space is available and prompts user to either choose again
+        (calls player2 method again) or place their marker*/
         if (!spaceAvailable)
         {
             Player2(gameboard);
@@ -113,9 +127,11 @@ public class Assignment2
             gameboard[row][column]=2;
         }
 
+        //boolean checks for win or draw
         boolean win=CheckWin(gameboard);
         boolean draw=CheckDraw(gameboard);
 
+        //if no win or draw, prints game board and calls Player1 method for next turn
         if (!draw && !win)
         {
             PrintGameboard(gameboard);
@@ -146,13 +162,13 @@ public class Assignment2
         {
             if (gameboard[rows][0]==gameboard[rows][1] && gameboard[rows][1]==gameboard[rows][2] && gameboard[rows][0]!=0) 
             {
-                System.out.println("Player "+gameboard[rows][0]+" wins!");
+                System.out.println("Player "+gameboard[rows][0]+" wins by making a row!");
                 PrintGameboard(gameboard);
                 System.exit(0);
             }
             if (gameboard[0][rows]==gameboard[1][rows] && gameboard[1][rows]==gameboard[2][rows] && gameboard[0][rows]!=0) 
             {
-                System.out.println("Player "+gameboard[0][rows]+" wins!");
+                System.out.println("Player "+gameboard[0][rows]+" wins by making a column!");
                 PrintGameboard(gameboard);
                 System.exit(0);
             }
@@ -161,13 +177,13 @@ public class Assignment2
         // Check diagonals for a win
         if (gameboard[0][0]==gameboard[1][1] && gameboard[1][1]==gameboard[2][2] && gameboard[0][0]!=0) 
         {
-            System.out.println("Player "+gameboard[0][0]+" wins!");
+            System.out.println("Player "+gameboard[0][0]+" wins diagonally!");
             PrintGameboard(gameboard);
             System.exit(0);
         }
         if (gameboard[0][2]==gameboard[1][1] && gameboard[1][1]==gameboard[2][0] && gameboard[0][2]!=0)
         {
-            System.out.println("Player "+gameboard[0][2]+" wins!");
+            System.out.println("Player "+gameboard[0][2]+" wins diagonally!");
             PrintGameboard(gameboard);
             System.exit(0);
         }
