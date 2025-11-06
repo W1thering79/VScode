@@ -142,7 +142,7 @@ public class Assignment2
 
 
 
-    static boolean CheckSpace(int gameboard[][],int row,int column)
+    static boolean CheckSpace(int gameboard[][],int row,int column) //boolean method to check if space is available; uses gameboard, row, and column as parameters
     {
         if (gameboard[row][column]!=0) 
         {
@@ -160,12 +160,14 @@ public class Assignment2
         // Check rows and columns for a win
         for (int rows=0;rows<3;rows++) 
         {
+            // Check rows
             if (gameboard[rows][0]==gameboard[rows][1] && gameboard[rows][1]==gameboard[rows][2] && gameboard[rows][0]!=0) 
             {
                 System.out.println("Player "+gameboard[rows][0]+" wins by making a row!");
                 PrintGameboard(gameboard);
                 System.exit(0);
             }
+            // Check columns
             if (gameboard[0][rows]==gameboard[1][rows] && gameboard[1][rows]==gameboard[2][rows] && gameboard[0][rows]!=0) 
             {
                 System.out.println("Player "+gameboard[0][rows]+" wins by making a column!");
@@ -181,6 +183,7 @@ public class Assignment2
             PrintGameboard(gameboard);
             System.exit(0);
         }
+        // Check the other diagonal
         if (gameboard[0][2]==gameboard[1][1] && gameboard[1][1]==gameboard[2][0] && gameboard[0][2]!=0)
         {
             System.out.println("Player "+gameboard[0][2]+" wins diagonally!");
@@ -191,10 +194,10 @@ public class Assignment2
     }
 
 
-
+    //boolean method to check for a draw; uses gameboard as parameter
     static boolean CheckDraw(int gameboard[][])
     {
-        // Check for a tie
+        //Initializes tie as true; if any space is empty, tie is set to false
         boolean tie=true;
         for (int row=0;row<3;row++) 
         {

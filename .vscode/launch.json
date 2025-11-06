@@ -3,6 +3,76 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Assignment3",
+            "request": "launch",
+            "mainClass": "Assignment3",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activtiy13",
+            "request": "launch",
+            "mainClass": "Activtiy13",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity12",
+            "request": "launch",
+            "mainClass": "Activity12",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "JavaTermProject",
+            "request": "launch",
+            "mainClass": "JavaTermProject",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity11",
+            "request": "launch",
+            "mainClass": "Activity11",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity10",
+            "request": "launch",
+            "mainClass": "Activity10",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity9",
+            "request": "launch",
+            "mainClass": "Activity9",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity9$Employee",
+            "request": "launch",
+            "mainClass": "Activity9$Employee",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
+            "name": "Activity8",
+            "request": "launch",
+            "mainClass": "Activity8",
+            "projectName": "VScode_c0cf4f29"
+        },
+        {
+            "type": "java",
             "name": "Activity7",
             "request": "launch",
             "mainClass": "Activity7",
