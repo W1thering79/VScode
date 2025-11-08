@@ -12,10 +12,14 @@ public abstract class GeometricObject
         this.dateCreated=new Date();
     }
 
-    protected GeometricObject(int color) 
+protected GeometricObject(int color)
     {
-        this.color=color;
-        this.dateCreated=new Date();
+        if(color<1 || color>7)
+        {
+            throw new IllegalArgumentException("Color must be between 1 and 7.");
+        }
+        this.color = color;
+        this.dateCreated = new Date();
     }
 
     public int getColor() 
