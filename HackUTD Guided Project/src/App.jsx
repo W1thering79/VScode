@@ -6,30 +6,63 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MapPage from "./pages/MapPage";
 import ActivityPage from "./pages/ActivityPage";
 import RsvpPage from "./pages/RsvpPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import LandingPage from "./pages/LandingPage";
+import { AuthProvider } from "./contexts/authContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-return (
-  <Router>
-    {/* Regardless of what page we're on, we ALWAYS render the Navbar */}
-    <Navbar />
-    <Routes>
-      {/* Home route displaying Navbar, FeaturedItem, and Dashboard */}
-      <Route
-        path="/"
-        element={
-          <>
-            <FeaturedItem />
-            <Dashboard />
-          </>
-        }
-      />
-      {/* Browse route displaying Navbar and BrowsePage */}
-      <Route path="/map" element={<MapPage />} />
-      <Route path="/activity" element={<ActivityPage />} />
-      <Route path="/rsvp" element={<RsvpPage />} />
-    </Routes>
-  </Router>
-);
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <>
+                  <Navbar />
+                  <FeaturedItem />
+                  <Dashboard />
+                </>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <MapPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/activity"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <ActivityPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/rsvp"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <RsvpPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default App;
